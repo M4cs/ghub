@@ -190,3 +190,20 @@ class CLONE(Command):
                 clone_repo(ghub, args[0])
         elif len(args) == 2:
             clone_repo(ghub, args[1], args[0])
+            
+class TOUCH(Command):
+    def __init__(self):
+        self.setup("touch", "Create file in repo")
+        
+    def __call__(self, args, ghub):
+        if not args[0]:
+            print('Must Specify File Name!')
+        else:
+            if ghub.context.context == "repo":
+                repo = ghub.Repo(os.getcwd())
+                with open(args[0], 'w') as file:
+                    file.write('')
+                repo.git.add(args[0])
+                repo.git.commit('-m', 'Added File: {}'.format(args[0]))
+            else:
+                print('Must be inside a repository to use this command!')
