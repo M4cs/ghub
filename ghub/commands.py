@@ -5,6 +5,7 @@ from termcolor import colored
 from .githubutils import authorize, get_user_tabs, get_tree, get_user, clone_repo
 from .repoutils import get_items_in_tree, get_blob_content
 from .context import Context
+from git import Repo
 
 
 class Command(object):
