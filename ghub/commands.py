@@ -196,14 +196,15 @@ class TOUCH(Command):
         self.setup("touch", "Create file in repo")
         
     def __call__(self, args, ghub):
-        if not args.get(0):
+        if not len(args) >= 1:
             print('Must Specify File Name!')
         else:
             if ghub.context.context == "repo":
                 repo = git.Repo(ghub.context.location)
-                with open(args[0], 'w') as file:
-                    file.write('')
-                repo.git.add(args[0])
-                repo.git.commit('-m', 'Added File: {}'.format(args[0]))
+                for arg in args:
+                    with open(args[0], 'w') as file:
+                        file.write('')
+                    repo.git.add(args[0])
+                    repo.git.commit('-m', 'Added File: {}'.format(args[0]))
             else:
                 print('Must be inside a repository to use this command!')
