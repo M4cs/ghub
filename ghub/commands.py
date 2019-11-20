@@ -196,7 +196,7 @@ class TOUCH(Command):
         self.setup("touch", "Create file in repo")
         
     def __call__(self, args, ghub):
-        if not args[0]:
+        if not args.get(0):
             print('Must Specify File Name!')
         else:
             if ghub.context.context == "repo":
