@@ -201,7 +201,7 @@ class TOUCH(Command):
             print('Must Specify File Name!')
         else:
             if ghub.context.context == "repo":
-                repo = Repo(ghub.context.location)
+                repo = Repo(ghub.context)
                 for arg in args:
                     with open(args[0], 'w') as file:
                         file.write('')
